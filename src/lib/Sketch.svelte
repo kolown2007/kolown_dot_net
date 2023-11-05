@@ -1,9 +1,29 @@
 <script lang="ts">
 	import P5 from 'p5-svelte';
+  import { onMount } from 'svelte';
+  import { connectWebSocket, sendMessage } from '$lib/socket';
 	let width = 55;
 	let height = 55;
     let bg: any;
     let canvas:any;
+
+    
+    let message = '';
+  
+    onMount(() => {
+      connectWebSocket();
+    });
+
+
+    async function sendWebSocketMessage(msg: string | ArrayBufferLike | Blob | ArrayBufferView) {
+      try {
+        sendMessage(msg);
+        message = `Message sent: ${msg}`;
+      } catch (error) {
+        message = 'Failed to send message';
+      }
+    }
+
 
 
 	const sketch = (p5:any) => {
@@ -50,7 +70,8 @@
     };
     xhr.send('imageData=' + dataURL);
     alert("sent");
-    window.location.href = "https://kolown.net"
+    sendWebSocketMessage('sketch')
+    window.location.href = "https://instagram.com/kolown"
   }
 
 
