@@ -1,11 +1,16 @@
 <script lang="ts">
 	import P5 from 'p5-svelte';
-  import { onMount } from 'svelte';
+  import { onMount,onDestroy } from 'svelte';
   import { connectWebSocket, sendMessage } from '$lib/socket';
-	let width = 55;
-	let height = 55;
+  import { fly } from "svelte/transition";
+
+    let width:number = 55;
+    let height:number = 55;
     let bg: any;
     let canvas:any;
+    let showSketch:boolean = true;
+    let buttonLabel:string = "Done";
+
 
     
     let message = '';
@@ -23,7 +28,6 @@
         message = 'Failed to send message';
       }
     }
-
 
 
 	const sketch = (p5:any) => {
@@ -51,7 +55,6 @@
   }
 		};
 
-  
 	};
 
 
@@ -59,8 +62,6 @@
     // convert the canvas image to a data URL
     const dataURL = canvas.canvas.toDataURL();
 
-
-    
     // send the data URL to the PHP server
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/server/tradewindsluzon/tw.php', true);
@@ -69,8 +70,16 @@
       // handle response from server
     };
     xhr.send('imageData=' + dataURL);
-    alert("sent");
-    sendWebSocketMessage('sketch')
+    // alert("sent");
+  
+    showSketch = false;
+    buttonLabel = "Send Sticker";
+ 
+   
+  }
+
+  function handleXButtonClick() {
+    sendWebSocketMessage("sketch")
     window.location.href = "https://instagram.com/kolown"
   }
 
@@ -81,10 +90,21 @@
 </script>
 
 
-<P5 {sketch} />
-<div class ="justify-center py-4">
 
+  {#if showSketch}
+    {#key showSketch} <!-- Add the #key directive to properly transition in and out -->
+      <div in:fly={{ x: 200, duration: 300 }} out:fly={{ y: -200, duration: 900 }}>
+        <P5 {sketch} />
+      </div>
+    {/key}
+  {/if}
 
-<button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="buttonsave" on:click={sendDataToServer}>Send Sticker</button>
-
-</div>
+  <div class="justify-center py-4">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="buttonsave" on:click={buttonLabel === "Done" ? sendDataToServer : handleXButtonClick}>
+      {#if buttonLabel === "Done"}
+        {buttonLabel}
+      {:else}
+        {buttonLabel}
+      {/if}
+    </button>
+  </div>
