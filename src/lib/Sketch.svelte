@@ -16,7 +16,9 @@
     let message = '';
   
     onMount(() => {
+      alert('draw on the sticker and press send')
       connectWebSocket();
+   
     });
 
 
@@ -35,12 +37,11 @@
         p5.preload =() => {
             bg = p5.loadImage('https://kolown.net/server2/lbc.jpg');
             bg.p5.resize(320,0)
-          
-         
         }
 
 		p5.setup = () => {
 			canvas = p5.createCanvas(320,213.6);
+     
             p5.background(bg);
             p5.strokeWeight(10)
 		};
@@ -66,45 +67,68 @@
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/server/tradewindsluzon/tw.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+ 
     xhr.onload = function() {
-      // handle response from server
-    };
+    if (xhr.status === 200) {
+      // Handle a successful response from the server
+      const response = JSON.parse(xhr.responseText);
+      console.log(response.status); // 'success'
+      console.log(response.message); // 'Image processing is complete'
+      console.log(response.filename); // 'Image processing is complete'
+      sendWebSocketMessage('process:' + response.filename);
+      // You can update the UI or take further action based on the response
+    } else {
+      // Handle errors or non-200 HTTP responses
+      console.error('Error:', xhr.status, xhr.statusText);
+    }
+  };
+
+
     xhr.send('imageData=' + dataURL);
-    // alert("sent");
+   
   
     showSketch = false;
-    buttonLabel = "Send Sticker";
- 
+
+
    
   }
 
-  function handleXButtonClick() {
-    sendWebSocketMessage("sketch")
-    window.location.href = "https://instagram.com/kolown"
-  }
-
-
-
-
-
+  
 </script>
 
 
 
   {#if showSketch}
     {#key showSketch} <!-- Add the #key directive to properly transition in and out -->
-      <div in:fly={{ x: 200, duration: 300 }} out:fly={{ y: -200, duration: 900 }}>
+      <div in:fly={{ x: 200, duration: 300 }} out:fly={{ y: -200, duration: 900 }} class="flex flex-col items-center">
         <P5 {sketch} />
+
+       <div class ='py-10'>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded" id="buttonsave" on:click={sendDataToServer}>
+           Send Sticker
+          </div>
       </div>
     {/key}
-  {/if}
+  {:else}
+  <!-- Render a different component or content when showComponent is false -->
+  <div>
+    <p>Thanks</p>
 
-  <div class="justify-center py-4">
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="buttonsave" on:click={buttonLabel === "Done" ? sendDataToServer : handleXButtonClick}>
-      {#if buttonLabel === "Done"}
-        {buttonLabel}
-      {:else}
-        {buttonLabel}
-      {/if}
-    </button>
+
+<div class ='py-4'>
+  <a href="https://instagram.com/kolown">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded">Follow us on IG</button>
+  </a>
+
+</div>
+
+<div class ='py-4'>
+  <a href="https://kolown.substack.com/">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded">Subsribe on Substack</button>
+  </a>
+</div>
+  
+
+
   </div>
+{/if}
