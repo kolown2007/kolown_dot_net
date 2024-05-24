@@ -7,4 +7,4 @@ Route::get('/', function () {
     return Inertia:: render('Home');
 });
 
-Route::get('/webhook', '\App\Http\Controllers\WebhookController@handleWebhook');
+
