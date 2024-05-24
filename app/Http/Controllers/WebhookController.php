@@ -3,21 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class WebhookController extends Controller
 {
     public function handleWebhook(Request $request)
     {
-        $process = Process::fromShellCommandline('git pull origin inertia');
+        // Define the directory of your Git repository
+        $repo_dir = '/kolown_dot_net/kolown_dot_net';
 
-        $process->run();
+        // Define the command you want to execute
+        $command = 'git pull origin main';
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+        // Change to the repository directory
+        chdir($repo_dir);
 
-        return response('Webhook handled', 200);
+        // Execute the command
+        $output = shell_exec($command);
+
+        // Return the output
+        return response("<pre>Command executed: $command</pre><pre>$output</pre>", 200)
+            ->header('Content-Type', 'text/html');
     }
 }
