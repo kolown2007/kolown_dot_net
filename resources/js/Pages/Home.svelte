@@ -3,5 +3,5 @@
   </script>
   
  <main>
-    <h1>Hello Svelte </h1>
+    <h1>Webhook Test </h1>
  </main>
