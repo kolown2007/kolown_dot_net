@@ -3,7 +3,7 @@
 $repo_dir = '/kolown_dot_net/kolown_dot_net';
 
 // Define the command you want to execute
-$command = 'git pull origin main';
+$command = 'git pull origin inertia';
 
 // Change to the repository directory
 chdir($repo_dir);
