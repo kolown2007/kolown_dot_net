@@ -7,26 +7,20 @@ use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\MessageController;
 
 
-
-
-
 Route::get('/', function () {
     return Inertia:: render('Home');
 });
 
 
-Route::inertia('/tw5', 'Home');
 Route::inertia('/bruce', 'Bruce');
-
-
-Route::post('/send-message',  [SmsController::class, 'send']);
 Route::post('/trigger',  [SmsController::class, 'send']);
 
-Route::get('/processmessage', [OpenAIController::class, 'readAndProcessFile']);
+//route for the messages of the day
+Route::get('/messagestoday', [MessageController::class, 'showMessage']);
 
-Route::get('/messagearchive', [MessageController::class, 'showMessage']);
 
-
+//route for processing and altering the text
+Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
 
 
 
