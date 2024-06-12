@@ -18,6 +18,8 @@ Route::post('/trigger',  [SmsController::class, 'send']);
 //route for the messages of the day
 Route::get('/messagestoday', [MessageController::class, 'showMessage']);
 
+//current story to be consumed by tradewinds
+Route::get('/storytoday', [MessageController::class, 'showCurrentStory']);
 
 //route for processing and altering the text
 Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);

@@ -19,4 +19,19 @@ class MessageController extends Controller
     // Wrap the lines in <pre> tags and return them
     return '<pre>' . implode("\n", $lines) . '</pre>';
 }
+
+public function showCurrentStory()
+{
+    // Read the content of the message.txt file
+    $message = Storage::get('currentstory.txt');
+
+    // Convert the string into an array of lines
+    $lines = explode("\n", $message);
+
+return response()->json($lines);
+}
+
+
+
+
 }
