@@ -9,7 +9,7 @@ class GitController extends Controller
     public function pull()
     {
         // Define the directory of your Git repository
-        $repo_dir = '/kolown_dot_net/kolown_dot_net';
+        $repo_dir = '/kolown_app';
     
         // Define the commands you want to execute
         $git_command = 'git pull origin inertia';
