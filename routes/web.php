@@ -7,6 +7,16 @@ use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\MessageController;
 
 
+
+Route::domain('app2.kolown.net')->group(function () {
+   
+    Route::get('/', function () {
+        return Inertia:: render('Home');
+    });
+    
+
+});
+
 Route::get('/', function () {
     return Inertia:: render('Home');
 });
