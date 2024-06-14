@@ -12,7 +12,7 @@ Route::get('/', function () {
 });
 
 
-Route::inertia('/bruce', 'Bruce');
+Route::inertia('/app', 'Home');
 Route::post('/trigger',  [SmsController::class, 'send']);
 
 //route for the messages of the day
