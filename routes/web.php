@@ -8,21 +8,21 @@ use App\Http\Controllers\MessageController;
 
 
 
-Route::domain('app2.kolown.net')->group(function () {
    
     Route::get('/', function () {
         return Inertia:: render('Home');
     });
     
 
-});
+
 
 Route::get('/', function () {
     return Inertia:: render('Home');
 });
 
-
+//kolown app home
 Route::inertia('/app', 'Home');
+
 Route::post('/trigger',  [SmsController::class, 'send']);
 
 //route for the messages of the day

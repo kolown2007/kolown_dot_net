@@ -12,4 +12,6 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/storytoday', [MessageController::class, 'showCurrentStory']);
 
+Route::get('/storymain', [MessageController::class, 'showMainStory']);
+
 Route::get('/git-pull', [GitController::class, 'pull']);

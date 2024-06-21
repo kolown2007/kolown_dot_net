@@ -31,6 +31,18 @@ public function showCurrentStory()
 return response()->json($lines);
 }
 
+public function showMainStory()
+{
+    // Read the content of the message.txt file
+    $message = Storage::get('storymain.txt');
+
+    // Convert the string into an array of lines
+    $lines = explode("\n", $message);
+
+return response()->json($lines);
+}
+
+
 
 
 
