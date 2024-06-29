@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 //kolown app home
-Route::inertia('/app', 'Home');
+Route::inertia('/app', 'App');
 
 Route::post('/trigger',  [SmsController::class, 'send']);
 

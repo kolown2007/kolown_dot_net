@@ -1,52 +1,24 @@
 <script>
     
- import { useForm } from '@inertiajs/svelte'
- let D = new Date().getFullYear();
 
- let values = useForm ({
-        sms:"",
-       })
-
-  function submit() {
-  $values.post('/trigger',{
-  preserveScroll: true,
-  onSuccess: () => $values.sms = '',
-});
-  console.log($values.sms);
-
-}
-
-  
 </script>
 
 
 
-<main
-    class="h-screen flex flex-col justify-between items-center px-4 py-4 bg-black text-red-900 font-mono"
->
-    <div>
-        <h1>KoloWn App {D}</h1>
-    </div>
+<main>
 
-    <div class=" h-screen flex flex-col justify-center">
-        <div class="p-4 flex">
-            <input
-                id="sms"
-                type="string"
-                placeholder="Type a message"
-                bind:value={$values.sms}
-                class="w-full max-w-96 px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-            <button
-                id="send-button"
-                class="bg-red-500 text-white px-4 py-2 rounded-r-md hover:bg-red-400 transition duration-300"
-                on:click={submit}>Send</button
-            >
+    <main class= "flex flex-col items-center justify-center text-md min-h-screen bg-black text-red-500 font-mono" > 
+        <h1> Activations</h1>
+        &nbsp;
+        &nbsp;
+     <div class="text-2xl grid grid-cols-1  gap-4">
+      
+            <a href="https://internetpavilion2024.web.app">Internet Pavilion 2024</a>
+            <a href="https://www.kamiasspecialprojects.com/">4th Kamias Triennial</a>
+            <a href="https://kolown.com">KoloWn Archive</a>
         </div>
-
-    </div>
-
-
+    </main>
+   
 
 
 </main>
