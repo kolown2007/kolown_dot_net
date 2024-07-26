@@ -13,13 +13,15 @@ class SmsController extends Controller
 
 public function send(Request $request)
 {
+
+ 
     $requestData = $request->all();
 
     if (isset($requestData['sms'])) {
         $message = $requestData['sms'];
 
           // Append the message to a .txt file
-          Storage::append('message.txt', $message);
+     // Storage::append('message.txt', $message);
 
         $ably   = new \Ably\AblyRest(env('ABLY_KEY'));
         $channel = $ably->channels->get('get-started');

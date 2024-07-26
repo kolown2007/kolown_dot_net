@@ -23,11 +23,14 @@ Route::get('/', function () {
 //kolown app home
 Route::inertia('/app', 'App');
 
+//kolown app ghost in the machine
+Route::inertia('/gitm', 'Gitm');
+
+//app messaging public
 Route::post('/trigger',  [SmsController::class, 'send']);
 
 //route for the messages of the day
 Route::get('/messagestoday', [MessageController::class, 'showMessage']);
-
 
 //route for processing and altering the text
 Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
