@@ -26,6 +26,10 @@ Route::inertia('/app', 'App');
 //kolown app ghost in the machine
 Route::inertia('/gitm', 'Gitm');
 
+
+//kolown app endless love
+Route::inertia('/endlesslove', 'Endlesslove');
+
 //app messaging public
 Route::post('/trigger',  [SmsController::class, 'send']);
 
