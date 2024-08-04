@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from 'svelte';
 
     let hearts = [];
     let clickCount = 0;
@@ -35,6 +34,9 @@
         height: 100vh;
         overflow: hidden;
         background-color: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .heart {
@@ -64,7 +66,7 @@
     {#each hearts as heart (heart.id)}
         <div
             class="heart"
-            style="left: {heart.x - 25}px; top: {heart.y - 25}px;"
+            
         ></div>
     {/each}
 </main>
