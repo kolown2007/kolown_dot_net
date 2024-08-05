@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', '/storytoday','assets/*'],
+    'paths' => ['api/*', '/storytoday','assets/*','/gitm-data'],
 
     'allowed_methods' => ['*'],
 
