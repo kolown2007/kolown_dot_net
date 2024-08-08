@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\GitController;
 
 
 
@@ -38,6 +39,10 @@ Route::get('/messagestoday', [MessageController::class, 'showMessage']);
 
 //route for processing and altering the text
 Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
+
+//git pull route
+Route::get('/gitpull', [GitController::class, 'pull']);
+
 
 
 
