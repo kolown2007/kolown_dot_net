@@ -1,11 +1,25 @@
 <script>
+    
+    import * as Ably from 'ably';
 
     let hearts = [];
     let clickCount = 0;
     let backgroundColor = '#080101';
 
-    function handleTap(event) {
+  /* Set up a Realtime client that authenticates with the local web server auth endpoint */
+  var realtime = new Ably.Realtime({ authUrl: '/auth' });
+
+  realtime.connection.once('connected', function() {
+    alert("hello");
+  });
+
+    async function handleTap(event) {
         const { clientX, clientY } = event;
+
+
+     
+        const channel = realtime.channels.get('get-started');
+        channel.publish('first', "love");
 
         const heart = {
             id: Date.now(),
@@ -66,7 +80,7 @@
     {#each hearts as heart (heart.id)}
         <div
             class="heart"
-            
+           
         ></div>
     {/each}
 </main>

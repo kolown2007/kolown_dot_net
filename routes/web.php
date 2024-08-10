@@ -43,6 +43,9 @@ Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
 //git pull route
 Route::get('/gitpull', [GitController::class, 'pull']);
 
+//ably auth token route
+Route::get('/auth', [SmsController::class, 'TokenRequest']);
+
 
 
 
