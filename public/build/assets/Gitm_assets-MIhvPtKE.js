@@ -1,0 +1,1 @@
+import{p as m,y as g,c as i,a as p,o as r,t as l}from"./app-DgDuk6wL.js";var o=l('<img alt="assets images">');function c(a,s){m(s,!1);let t="{{ asset('storage/images/example.jpg') }}";var e=r(a,!0,o);g(e,"src",t),i(a,e),p()}export{c as default};

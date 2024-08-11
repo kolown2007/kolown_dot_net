@@ -19,7 +19,7 @@
 
      
         const channel = realtime.channels.get('get-started');
-        channel.publish('first', "love");
+        channel.publish('endless', "love");
 
         const heart = {
             id: Date.now(),
