@@ -1,16 +1,16 @@
 <script>
     
-    import * as Ably from 'ably';
+    import { Realtime } from 'ably';
 
     let hearts = [];
     let clickCount = 0;
     let backgroundColor = '#080101';
 
   /* Set up a Realtime client that authenticates with the local web server auth endpoint */
-  var realtime = new Ably.Realtime({ authUrl: '/auth' });
+  var realtime = new Realtime({ authUrl: '/ablyauth' });
 
   realtime.connection.once('connected', function() {
-    alert("hello");
+    alert("tap the screen to send love");
   });
 
     async function handleTap(event) {

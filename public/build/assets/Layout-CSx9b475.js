@@ -1,1 +1,0 @@
-import{p,z as i,A as u,a as g,B as n,s as m,C as c,e as h,t as v,f as s,E as y}from"./app-DgDuk6wL.js";var _=v("<h1>Hello</h1> <p> </p>",!0);function x(a,e){p(e,!1);let r=c(e,"user");var t=n(a,!0,_),f=y(t),l=s(s(f)),o=h(l);i(o,()=>`Hello ${m(r().name)}, welcome to your first Inertia app!`),u(a,t),g()}export{x as default,x as layout};

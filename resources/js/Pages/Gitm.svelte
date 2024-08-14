@@ -1,31 +1,20 @@
 <script>
    
-
-    import { useForm } from '@inertiajs/svelte'
-  
-    let D = new Date().getFullYear();
+   import { Realtime } from 'ably';
+   let D = new Date().getFullYear();
     
+var realtime = new Realtime({ authUrl: '/ablyauth' });
 
+realtime.connection.once('connected', function() {
+  alert("you are connected");
+});
 
-   
-let values = useForm({
-    sms: "",
-  });
-
+const channel = realtime.channels.get('get-started');
 
 
 function submit(value) {
-    $values.sms = value;
-   
-    $values.post('/trigger', {
-     
-      preserveScroll: true,
-          onSuccess: () => $values.sms = '',
-      
-    });
-
-    console.log($values.sms);
-  
+    channel.publish('state', value);
+    console.log(value);
   }
 
 
