@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use App\Models\AllowedEmail;
 
 class GoogleAuthController extends Controller
 {
@@ -25,12 +26,8 @@ class GoogleAuthController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
 
-            // List of allowed emails
-            $allowedEmails = [
-                'workers.and.artisans@gmail.com',
-          
-                // Add more allowed emails here
-            ];
+          // Fetch allowed emails from the database
+          $allowedEmails = AllowedEmail::pluck('email')->toArray();
 
             // Check if the authenticated user's email is in the allowed list
             if (in_array($googleUser->getEmail(), $allowedEmails)) {
@@ -40,7 +37,7 @@ class GoogleAuthController extends Controller
                 Log::info('User authenticated and session stored.', ['email' => $googleUser->getEmail()]);
 
                 // Redirect to the intended route
-                return redirect()->intended('/gitm');
+                return redirect()->intended('/missioncontrol');
             } else {
                 // Deny access if the email is not in the allowed list
                 Log::warning('Access denied. Email not authorized.', ['email' => $googleUser->getEmail()]);

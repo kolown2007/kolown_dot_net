@@ -27,10 +27,6 @@ Route::get('/', function () {
 //kolown app home
 Route::inertia('/app', 'App');
 
-//kolown app ghost in the machine
-// Route::inertia('/gitm', 'Gitm');
-
-
 //kolown app endless love
 Route::inertia('/endlesslove', 'Endlesslove');
 
@@ -50,7 +46,9 @@ Route::get('/gitpull', [GitController::class, 'pull']);
 Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
 
 
-Route::get('/gitm', function (Request $request) {
+
+//mission control route
+Route::get('/missioncontrol', function (Request $request) {
     if (!$request->session()->has('googleUser')) {
         return redirect()->route('auth.google');
     }
