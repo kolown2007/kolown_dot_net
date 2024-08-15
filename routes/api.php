@@ -7,6 +7,7 @@ use App\Http\Controllers\GitController;
 use App\Http\Controllers\GITMcontroller;
 use Carbon\Carbon;
 use App\Http\Controllers\AllowedEmailController;
+use App\Http\Controllers\MigrationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -22,6 +23,10 @@ Route::get('/git-pull', [GitController::class, 'pull']);
 Route::get('/gitm-data', [GITMcontroller::class, 'gitm']);
 
 Route::get('/allowedemail', [AllowedEmailController::class, 'store']);
+
+Route::get('/allowedemail', [AllowedEmailController::class, 'store']);
+
+Route::get('/run-migrations', [MigrationController::class, 'runMigrations']);
 
 
 Route::get('/date', function () {
