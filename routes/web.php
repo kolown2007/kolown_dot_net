@@ -9,17 +9,12 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\GitController;
 use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AllowedEmailController;
 
-
-
-   
  Route::get('/', function () {
         return Inertia:: render('Home');
  });
     
-
-
-
 Route::get('/', function () {
     return Inertia:: render('Home');
 });
@@ -47,13 +42,27 @@ Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
 
 
 
+
 //mission control route
 Route::get('/missioncontrol', function (Request $request) {
     if (!$request->session()->has('googleUser')) {
         return redirect()->route('auth.google');
     }
-    return Inertia::render('Gitm');
+    return Inertia::render('missioncontrol/Gitm');
 });
+
+
+//mission control allowed email route
+Route::get('missioncontrol/allowedemail', function (Request $request) {
+    if (!$request->session()->has('googleUser')) {
+        return redirect()->route('auth.google');
+    }
+    return Inertia::render('missioncontrol/Gitm_allowedemail');
+});
+
+
+
+
 
 
 //google auth routes

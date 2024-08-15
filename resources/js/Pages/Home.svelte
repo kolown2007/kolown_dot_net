@@ -13,9 +13,11 @@
         &nbsp;
      <div class="text-2xl grid grid-cols-1  gap-4">
       
-            <a href="https://internetpavilion2024.web.app">Internet Pavilion 2024</a>
-            <a href="https://www.kamiasspecialprojects.com/">4th Kamias Triennial</a>
-            <a href="https://kolown.com">KoloWn Archive</a>
+
+            <a href="https://www.leeumhoam.org/leeum">Dream Screen at Leeum Museum of Art, South Korea</a>
+            <!-- <a href="https://internetpavilion2024.web.app">Internet Pavilion 2024</a> -->
+            <!-- <a href="https://www.kamiasspecialprojects.com/">4th Kamias Triennial</a> -->
+            <!-- <a href="https://kolown.com">KoloWn Archive</a> -->
         </div>
     </main>
    

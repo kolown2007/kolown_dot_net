@@ -2,7 +2,8 @@
    
    import { Realtime } from 'ably';
    let D = new Date().getFullYear();
-    
+
+
 var realtime = new Realtime({ authUrl: '/ablyauth' });
 
 realtime.connection.once('connected', function() {
@@ -18,6 +19,7 @@ function submit(value) {
   }
 
 
+
    </script>
    
    
@@ -26,10 +28,26 @@ function submit(value) {
        class="h-screen flex flex-col justify-between items-center px-4 py-4 bg-black text-red-900 font-mono"
    >
        <div>
-           <h1>KoloWn App {D}</h1>
+           <h1>KoloWn App : Ghost in the Machine {D}</h1>
        </div>
+       &nbsp;
+       &nbsp;
+
+       <div>
+        <p> State1: All Screens visual 1</p>
+        <p> State2: All Screens visual 2</p>
+        <p> State3: All Screens visual 3</p>
+        <p> State4: random visuals</p>
+        <p> State5: random visuals</p>
+        <p> State6: random visuals</p>
+
+        
+    </div>
+
+
    
        <div class=" h-screen flex flex-col justify-center">
+
         <div class="p-4 grid grid-cols-2 gap-8"> <!-- Adjust grid-cols-2 to the desired number of columns -->
             <button
                 id="send-button-1"
@@ -63,10 +81,9 @@ function submit(value) {
                 on:click={() => submit('state6')}>state6</button>
 
         </div>
-           
-   
-       </div>
-   
+
+
+  
    
    
    

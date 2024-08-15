@@ -41,7 +41,7 @@ class GoogleAuthController extends Controller
             } else {
                 // Deny access if the email is not in the allowed list
                 Log::warning('Access denied. Email not authorized.', ['email' => $googleUser->getEmail()]);
-                return redirect('/gitm')->withErrors(['msg' => 'Access denied. Your email is not authorized.']);
+                return redirect('/endlesslove')->withErrors(['msg' => 'Access denied. Your email is not authorized.']);
             }
         } catch (Exception $e) {
             // Handle the error
