@@ -1,30 +1,24 @@
 <script lang="ts">
     
     import { Realtime } from 'ably';
+
     let hearts = [];
-    let count = 0;
+    //let count = $state(0);
     let backgroundColor = '#080101';
 
 //    let realtime:Realtime;
-   let realtime = new Realtime({ authUrl: '/ablyauth' });      
+let realtime = new Realtime({ authUrl: '/ablyauth' });
+
+
+        
     realtime.connection.once('connected', function() {
-      alert("1 tap = 1 love");
+      alert("tap the screen to send love");
 
     });
 
     const channel = realtime.channels.get('get-started');
-
-
     async function handleTap(event: { clientX: any; clientY: any; }) {
-        count += 1;
-        console.log( "Count:" + count);
-
-        if (count === 10) {
-            backgroundColor = 'blue';
-            count = 0;
-            channel.publish('state', "state3");
-        }
-
+     //count++;
         const { clientX, clientY } = event;
         channel.publish('endless', "love");
 
@@ -41,6 +35,7 @@
             hearts = hearts.filter(h => h.id !== heart.id);
         }, 1000);
 
+    
     }
 
 
@@ -95,10 +90,6 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <main onclick={handleTap}   style="--background-color: {backgroundColor}" >
-    
-    <div class="count-display text-stone-50">
-        {count}
-        </div>
     <div class="center-heart"></div>
 
     {#each hearts as heart (heart.id)}
@@ -108,7 +99,4 @@
            
         ></div>
     {/each}
-
-
-    
 </main>
