@@ -8,6 +8,7 @@ use App\Http\Controllers\GITMcontroller;
 use Carbon\Carbon;
 use App\Http\Controllers\AllowedEmailController;
 use App\Http\Controllers\MigrationController;
+use App\Http\Controllers\WebScrapController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,9 +25,11 @@ Route::get('/gitm-data', [GITMcontroller::class, 'gitm']);
 
 Route::get('/allowedemail', [AllowedEmailController::class, 'store']);
 
-Route::get('/allowedemail', [AllowedEmailController::class, 'store']);
+Route::post('/allowedemail', [AllowedEmailController::class, 'store']);
 
 Route::get('/run-migrations', [MigrationController::class, 'runMigrations']);
+
+Route::get('/scrape-headline', [WebScrapController::class, 'scrapeHeadline']);
 
 
 Route::get('/date', function () {
