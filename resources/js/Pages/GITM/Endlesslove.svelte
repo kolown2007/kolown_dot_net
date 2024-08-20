@@ -1,24 +1,30 @@
 <script lang="ts">
     
     import { Realtime } from 'ably';
-
     let hearts = [];
-    //let count = $state(0);
+    let count = 0;
     let backgroundColor = '#080101';
 
 //    let realtime:Realtime;
-let realtime = new Realtime({ authUrl: '/ablyauth' });
-
-
-        
+   let realtime = new Realtime({ authUrl: '/ablyauth' });      
     realtime.connection.once('connected', function() {
-      alert("tap the screen to send love");
+      alert("1 tap = 1 love");
 
     });
 
     const channel = realtime.channels.get('get-started');
+
+
     async function handleTap(event: { clientX: any; clientY: any; }) {
-     //count++;
+        count += 1;
+        console.log( "Count:" + count);
+
+        if (count === 10) {
+            backgroundColor = 'blue';
+            count = 0;
+            channel.publish('state', "state3");
+        }
+
         const { clientX, clientY } = event;
         channel.publish('endless', "love");
 
@@ -35,7 +41,6 @@ let realtime = new Realtime({ authUrl: '/ablyauth' });
             hearts = hearts.filter(h => h.id !== heart.id);
         }, 1000);
 
-    
     }
 
 
@@ -89,7 +94,11 @@ let realtime = new Realtime({ authUrl: '/ablyauth' });
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<main onclick={handleTap}   style="--background-color: {backgroundColor}" >
+<main on:click={handleTap}   style="--background-color: {backgroundColor}" >
+    
+    <div class="count-display text-stone-50">
+        {count}
+        </div>
     <div class="center-heart"></div>
 
     {#each hearts as heart (heart.id)}
@@ -99,4 +108,7 @@ let realtime = new Realtime({ authUrl: '/ablyauth' });
            
         ></div>
     {/each}
+
+
+    
 </main>

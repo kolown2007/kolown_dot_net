@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::inertia('/app', 'App');
 
 //kolown app endless love
-Route::inertia('/endlesslove', 'Endlesslove');
+Route::inertia('/endlesslove', 'GITM/Endlesslove');
 
 //app messaging public
 Route::post('/trigger',  [SmsController::class, 'send']);
@@ -34,8 +34,6 @@ Route::get('/messagestoday', [MessageController::class, 'showMessage']);
 //route for processing and altering the text
 Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
 
-//git pull route
-Route::get('/gitpull', [GitController::class, 'pull']);
 
 //ably auth token route
 Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);

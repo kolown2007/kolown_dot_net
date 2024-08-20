@@ -1,6 +1,6 @@
 {
-  "_ably-BsGxw5hw.js": {
-    "file": "assets/ably-BsGxw5hw.js",
+  "_ably-D0zez3BZ.js": {
+    "file": "assets/ably-D0zez3BZ.js",
     "name": "ably",
     "imports": [
       "resources/js/app.js"
@@ -12,7 +12,7 @@
     "isEntry": true
   },
   "resources/js/Pages/App.svelte": {
-    "file": "assets/App-CKl5GZ3e.js",
+    "file": "assets/App-N__exI7B.js",
     "name": "App",
     "src": "resources/js/Pages/App.svelte",
     "isDynamicEntry": true,
@@ -21,7 +21,7 @@
     ]
   },
   "resources/js/Pages/Bruce.svelte": {
-    "file": "assets/Bruce-DRD-PDbt.js",
+    "file": "assets/Bruce-CI47Qq0u.js",
     "name": "Bruce",
     "src": "resources/js/Pages/Bruce.svelte",
     "isDynamicEntry": true,
@@ -29,30 +29,14 @@
       "resources/js/app.js"
     ]
   },
-  "resources/js/Pages/Endlesslove.svelte": {
-    "file": "assets/Endlesslove-Cd5xNRbG.js",
-    "name": "Endlesslove",
-    "src": "resources/js/Pages/Endlesslove.svelte",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js",
-      "_ably-BsGxw5hw.js"
-    ],
-    "css": [
-      "assets/Endlesslove-ZrKCeni-.css"
-    ],
-    "assets": [
-      "assets/heart-Rh3cLfWX.svg"
-    ]
-  },
   "resources/js/Pages/GITM/Endlesslove.svelte": {
-    "file": "assets/Endlesslove-D1kwhBEv.js",
+    "file": "assets/Endlesslove-C_nL2PUa.js",
     "name": "Endlesslove",
     "src": "resources/js/Pages/GITM/Endlesslove.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ably-BsGxw5hw.js"
+      "_ably-D0zez3BZ.js"
     ],
     "css": [
       "assets/Endlesslove-ZrKCeni-.css"
@@ -62,7 +46,7 @@
     ]
   },
   "resources/js/Pages/Home.svelte": {
-    "file": "assets/Home-KccRY3Zf.js",
+    "file": "assets/Home-BqAKrn0L.js",
     "name": "Home",
     "src": "resources/js/Pages/Home.svelte",
     "isDynamicEntry": true,
@@ -71,7 +55,7 @@
     ]
   },
   "resources/js/Pages/Layout.svelte": {
-    "file": "assets/Layout-CGZoev-h.js",
+    "file": "assets/Layout-BKiLa-hI.js",
     "name": "Layout",
     "src": "resources/js/Pages/Layout.svelte",
     "isDynamicEntry": true,
@@ -80,17 +64,17 @@
     ]
   },
   "resources/js/Pages/missioncontrol/Gitm.svelte": {
-    "file": "assets/Gitm-fA-KMKAL.js",
+    "file": "assets/Gitm-5DA9190t.js",
     "name": "Gitm",
     "src": "resources/js/Pages/missioncontrol/Gitm.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ably-BsGxw5hw.js"
+      "_ably-D0zez3BZ.js"
     ]
   },
   "resources/js/Pages/missioncontrol/Gitm_allowedemail.svelte": {
-    "file": "assets/Gitm_allowedemail-CpBKxafk.js",
+    "file": "assets/Gitm_allowedemail-Cn6wzkkk.js",
     "name": "Gitm_allowedemail",
     "src": "resources/js/Pages/missioncontrol/Gitm_allowedemail.svelte",
     "isDynamicEntry": true,
@@ -99,14 +83,13 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-BksbBXYE.js",
+    "file": "assets/app-BKwA2DnP.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
       "resources/js/Pages/App.svelte",
       "resources/js/Pages/Bruce.svelte",
-      "resources/js/Pages/Endlesslove.svelte",
       "resources/js/Pages/GITM/Endlesslove.svelte",
       "resources/js/Pages/Home.svelte",
       "resources/js/Pages/Layout.svelte",
