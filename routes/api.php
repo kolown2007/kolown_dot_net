@@ -23,8 +23,6 @@ Route::get('/git-pull', [GitController::class, 'pull']);
 
 Route::get('/gitm-data', [GITMcontroller::class, 'gitm']);
 
-Route::get('/allowedemail', [AllowedEmailController::class, 'store']);
-
 Route::post('/allowedemail', [AllowedEmailController::class, 'store']);
 
 Route::get('/run-migrations', [MigrationController::class, 'runMigrations']);
