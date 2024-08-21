@@ -22,8 +22,8 @@ Route::get('/user', function (Request $request) {
 //migrations for database updates
 Route::get('/run-migrations', [MigrationController::class, 'runMigrations']);
 //git pull for server updates
-Route::get('/git-pull', [GitController::class, 'pull']);
-Route::post('/run-nodejs', [NodeController::class, 'runCommands']);
+Route::post('/git-pull', [GitController::class, 'pull']);
+Route::get('/run-nodejs', [NodeController::class, 'runCommands']);
 
 //FUNCTIONALITY ROUTES
 //ably auth token route
