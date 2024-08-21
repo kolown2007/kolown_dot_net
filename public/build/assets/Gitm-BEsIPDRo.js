@@ -1,4 +1,4 @@
-import{S as G,a as M,s as q,e as s,t as E,b as h,d as n,f as F,g as t,l as m,n as S,j as H,r as K}from"./app-Cw0v_-1Y.js";import{a as L}from"./ably-C43MfGgE.js";function R(o){let a,d,_,l,g,f,x,e,r,v,i,w,c,C,u,A,p,j,b,k,$;return{c(){a=s("main"),d=s("div"),_=s("h1"),_.textContent=`KoloWn App : Ghost in the Machine ${o[0]}`,l=E(`
+import{S as G,a as M,s as q,e as s,t as E,b as h,d as n,f as F,g as t,l as m,n as S,j as H,r as K}from"./app-CqcHJkVR.js";import{a as L}from"./ably-DgndxJF0.js";function R(o){let a,d,_,l,g,f,x,e,r,v,i,w,c,C,u,A,p,j,b,k,$;return{c(){a=s("main"),d=s("div"),_=s("h1"),_.textContent=`KoloWn App : Ghost in the Machine ${o[0]}`,l=E(`
         
         
 

@@ -4,11 +4,12 @@
     let hearts = [];
     let count = 0;
     let backgroundColor = '#080101';
+    let showCenterHeart = true;
 
 //    let realtime:Realtime;
    let realtime = new Realtime({ authUrl: '/ablyauth' });      
     realtime.connection.once('connected', function() {
-      alert("1 tap = 1 love");
+      alert("you have 15 love limit");
 
     });
 
@@ -19,11 +20,33 @@
         count += 1;
         console.log( "Count:" + count);
 
-        if (count === 10) {
+        if (count === 5) {
             backgroundColor = 'blue';
-            count = 0;
             channel.publish('state', "state3");
+            alert('You have 10 remaining love');
         }
+
+        if (count === 10) {
+            backgroundColor = 'green';
+            channel.publish('state', "state3");
+            alert('You have 5 remaining love');
+        }
+
+
+        if (count === 15) {
+            backgroundColor = 'red';
+            channel.publish('state', "state6");
+            hearts = [];
+            showCenterHeart = false; // Hide the center heart
+            setTimeout(() => {
+        backgroundColor = '#080101'; // Reset the background color after a short delay
+    }, 100); // Adjust the delay as needed
+    alert('You have reached the maximum love limit.');
+    window.open("https://instagram.com/kolown", "_blank");
+
+    
+        }
+
 
         const { clientX, clientY } = event;
         channel.publish('endless', "love");
@@ -97,17 +120,22 @@
 <main on:click={handleTap}   style="--background-color: {backgroundColor}" >
     
     <div class="count-display text-stone-50">
-        {count}
+      
         </div>
-    <div class="center-heart"></div>
+        {#if showCenterHeart}
+        {count}
+        <div class="center-heart"></div>
 
-    {#each hearts as heart (heart.id)}
+        {#each hearts as heart (heart.id)}
         <div
             class="heart"
           
            
         ></div>
     {/each}
+
+    {/if}
+
 
 
     
