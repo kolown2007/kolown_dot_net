@@ -11,36 +11,26 @@ use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AllowedEmailController;
 
- Route::get('/', function () {
-        return Inertia:: render('Home');
- });
-    
+
+//HOME   
 Route::get('/', function () {
     return Inertia:: render('Home');
 });
 
 //kolown app home
-Route::inertia('/app', 'App');
+//Route::inertia('/app', 'App');
 
-//kolown app endless love
+
+//GITM project
+//endless love route
 Route::inertia('/endlesslove', 'GITM/Endlesslove');
-
-//app messaging public
-Route::post('/trigger',  [SmsController::class, 'send']);
-
-//route for the messages of the day
-Route::get('/messagestoday', [MessageController::class, 'showMessage']);
-
-//route for processing and altering the text
-Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
-
-
-//ably auth token route
-Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
-
-
-
-
+//mission control allowed email route
+Route::get('missioncontrol/allowedemail', function (Request $request) {
+    if (!$request->session()->has('googleUser')) {
+        return redirect()->route('auth.google');
+    }
+    return Inertia::render('missioncontrol/Gitm_allowedemail');
+});
 //mission control route
 Route::get('/missioncontrol', function (Request $request) {
     if (!$request->session()->has('googleUser')) {
@@ -50,25 +40,18 @@ Route::get('/missioncontrol', function (Request $request) {
 });
 
 
-//mission control allowed email route
-Route::get('missioncontrol/allowedemail', function (Request $request) {
-    if (!$request->session()->has('googleUser')) {
-        return redirect()->route('auth.google');
-    }
-    return Inertia::render('missioncontrol/Gitm_allowedemail');
-});
-
-
-
-
-
-
 //google auth routes
 Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 
-
+//TO BE REMOVED
+//app messaging public
+Route::post('/trigger',  [SmsController::class, 'send']);
+//route for processing and altering the text
+Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
+//ably auth token route
+Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
 
 
 

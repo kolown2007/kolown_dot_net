@@ -7,29 +7,53 @@ use App\Http\Controllers\GitController;
 use App\Http\Controllers\GITMcontroller;
 use Carbon\Carbon;
 use App\Http\Controllers\AllowedEmailController;
+use App\Http\Controllers\GhostwriterController;
 use App\Http\Controllers\MigrationController;
 use App\Http\Controllers\WebScrapController;
+use App\Http\Controllers\SmsController;
+use App\Http\Controllers\NodeController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
 
-Route::get('/storytoday', [MessageController::class, 'showCurrentStory']);
-
-Route::get('/storymain', [MessageController::class, 'showMainStory']);
-
+//SERVER MAINTENACE
+//migrations for database updates
+Route::get('/run-migrations', [MigrationController::class, 'runMigrations']);
+//git pull for server updates
 Route::get('/git-pull', [GitController::class, 'pull']);
+Route::post('/run-nodejs', [NodeController::class, 'runCommands']);
 
+//FUNCTIONALITY ROUTES
+//ably auth token route
+Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
+
+
+//NEVERENDING STORY PROJECT
+//current story for neverending story project
+Route::get('/storytoday', [MessageController::class, 'showCurrentStory']);
+//mainstory for neverending story project
+Route::get('/storymain', [MessageController::class, 'showMainStory']);
+//route for the messages of the day
+Route::get('/messagestoday', [MessageController::class, 'showMessage']);
+
+
+//GHOST IN THE MACHINE PROJECT
+//json data for gitm assets
 Route::get('/gitm-data', [GITMcontroller::class, 'gitm']);
-
+//allowed email for ghost in the machine
 Route::post('/allowedemail', [AllowedEmailController::class, 'store']);
 
-Route::get('/run-migrations', [MigrationController::class, 'runMigrations']);
-
+//GHOSTWRITER PROJECT
+//scrape headline for ghostwriter projects currently rappler
 Route::get('/scrape-headline', [WebScrapController::class, 'scrapeHeadline']);
+//ghostwriter for generating fake stories
+Route::get('/ghoststory', [GhostwriterController::class, 'ghoststory']);
 
 
+//ACCESSORY ROUTES
 Route::get('/date', function () {
     return Carbon::now()->toDateString();
 });
+
