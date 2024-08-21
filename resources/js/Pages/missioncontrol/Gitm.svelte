@@ -4,7 +4,7 @@
    let D = new Date().getFullYear();
 
 
-var realtime = new Realtime({ authUrl: '/ablyauth' });
+var realtime = new Realtime({ authUrl: '/api/ablyauth' });
 
 realtime.connection.once('connected', function() {
   alert("you are connected");
