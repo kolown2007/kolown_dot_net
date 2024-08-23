@@ -31,20 +31,8 @@ function submit(value) {
            <h1>KoloWn App : Ghost in the Machine {D}</h1>
        </div>
        &nbsp;
-       &nbsp;
-
-       <div>
-        <p> State1: All Screens visual 1</p>
-        <p> State2: All Screens visual 2</p>
-        <p> State3: All Screens visual 3</p>
-        <p> State4: random visuals</p>
-        <p> State5: random visuals</p>
-        <p> State6: random visuals</p>
-
-        
-    </div>
-
-
+     
+       <div> <a href ="https://kolown.com/docs/gitm" > Documentation </a></div>
    
        <div class=" h-screen flex flex-col justify-center">
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\MigrationController;
 use App\Http\Controllers\WebScrapController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\NodeController;
+use App\Http\Controllers\ImageScrapController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -44,6 +45,7 @@ Route::get('/messagestoday', [MessageController::class, 'showMessage']);
 Route::get('/gitm-data', [GITMcontroller::class, 'gitm']);
 //allowed email for ghost in the machine
 Route::post('/allowedemail', [AllowedEmailController::class, 'store']);
+Route::get('/leeum', [ImageScrapController::class, 'leeumimagescrapper']);
 
 //GHOSTWRITER PROJECT
 //scrape headline for ghostwriter projects currently rappler

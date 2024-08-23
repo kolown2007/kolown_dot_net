@@ -54,5 +54,10 @@ Route::get('/altertext', [OpenAIController::class, 'aiTextRevision']);
 Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
 
 
+//EXPLORATIONS
+
+Route::get('/ghostwriter', function () {
+    return Inertia::render('GhostWriter/GhostWriter');
+});
 
 
