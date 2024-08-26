@@ -1,23 +1,44 @@
 <script>
    
    import { Realtime } from 'ably';
+   import { onMount } from 'svelte';
    let D = new Date().getFullYear();
+   let audience;
+   let devices;
+   let channel;
+   
 
 
-var realtime = new Realtime({ authUrl: '/api/ablyauth' });
+   onMount(async () => {
+        try {
+            const realtime = new Realtime({ authUrl: '/api/ablyauth' });
 
-realtime.connection.once('connected', function() {
-  alert("you are connected");
-});
+            realtime.connection.once('connected', function() {
+                alert("you are connected");
+            });
 
-const channel = realtime.channels.get('get-started');
+            const channelOpts = { params: { occupancy: 'metrics' } };
+            channel = realtime.channels.get('get-started', channelOpts);
+
+            await channel.subscribe('[meta]occupancy', (message) => {
+                console.log('occupancy: ', message.data.metrics);
+                audience = message.data.metrics.publishers;
+                devices = message.data.metrics.subscribers;
+               
+              
+            });
+
+         
+        } catch (error) {
+            console.error('Error connecting to server:', error);
+        }
+    });
 
 
 function submit(value) {
     channel.publish('state', value);
     console.log(value);
   }
-
 
 
    </script>
@@ -33,6 +54,12 @@ function submit(value) {
        &nbsp;
      
        <div> <a href ="https://kolown.com/docs/gitm" > Documentation </a></div>
+       &nbsp;
+       &nbsp;
+       <div> <p>audience:{audience}</p>
+         <p>GITM app:{devices}</p>
+    
+       </div>
    
        <div class=" h-screen flex flex-col justify-center">
 
