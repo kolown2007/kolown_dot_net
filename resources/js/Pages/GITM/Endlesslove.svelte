@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import { Realtime } from 'ably';
     import { onMount, onDestroy } from 'svelte';
 
@@ -7,11 +7,11 @@
     let count = 0;
     let backgroundColor = '#080101';
     let showCenterHeart = true;
-    let lastmessage: boolean = false;
+    let lastmessage = false;
     let lastTap = 0;
 
-    let realtime: Realtime;
-    let channel: any;
+    let realtime;
+    let channel;
 
     const messages = [
         "double tap the heart to send love",
@@ -34,6 +34,26 @@
     
 
     onMount(() => {
+
+        //analytics
+        const script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VP97YYDPP0';
+        script.async = true;
+        document.head.appendChild(script);
+
+        script.onload = () => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-VP97YYDPP0');
+        };
+
+
+
+//realtime
+
         realtime = new Realtime({ authUrl: '/ablyauth' });
         realtime.connection.once('connected', () => {
             alert("double tap the heart to send love");
@@ -43,11 +63,15 @@
         document.addEventListener('touchend', handleDoubleTap);
     });
 
+
     onDestroy(() => {
         document.removeEventListener('touchend', handleDoubleTap);
     });
 
-    function handleDoubleTap(event: TouchEvent) {
+
+//accessory functions
+
+    function handleDoubleTap(event) {
         const currentTime = new Date().getTime();
         const tapLength = currentTime - lastTap;
         if (tapLength < 300 && tapLength > 0) {
@@ -104,7 +128,7 @@
     }
 
 
-
+//ajax function
     async function updateLove() {
         try {
             const response = await fetch('/api/updatelove', {

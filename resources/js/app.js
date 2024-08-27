@@ -2,6 +2,8 @@
 import { createInertiaApp } from '@inertiajs/svelte'
 
 
+
+
 createInertiaApp({
 resolve: name => {
 const pages = import.meta.glob('./Pages/**/*.svelte')
