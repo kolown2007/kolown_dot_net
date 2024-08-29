@@ -1,44 +1,35 @@
 <script>
-    import { Realtime,presence } from 'ably';
-    import { onMount, onDestroy } from 'svelte';
-
+    import { Realtime } from "ably";
+    import { onMount, onDestroy } from "svelte";
 
     let hearts = [];
     let count = 0;
-    let backgroundColor = '#080101';
+    let backgroundColor = "#080101";
     let showCenterHeart = true;
     let lastmessage = false;
     let lastTap = 0;
 
     let realtime;
-  
+
     let channel;
 
     const messages = [
-        "double tap the heart to send love",
-        "Do robots feel love?",
-        "where is the love?",
+        "You have 9 love credits left",
         "the next love you send will alter the installation",
         "cool right?",
-        "think before you click",
-        "we are all connected",
+        "Do robots feel love?",
+        "look around and double tap",
         "you are now part of the installation",
-        "love is a now a currency",
-        "you have 5 love left",     
-        "if love is the answer",
-        "what is the question?",
-        "make love not war",
-        "mahal ko kayo",
-      
+        "we are all connected",
+        "think before you click",
+        "Hello, We are KoloWn, this is your last two love credits",
+        "",
     ];
 
-    
-
     onMount(() => {
-
         //analytics
-        const script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VP97YYDPP0';
+        const script = document.createElement("script");
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-VP97YYDPP0";
         script.async = true;
         document.head.appendChild(script);
 
@@ -47,36 +38,29 @@
             function gtag() {
                 dataLayer.push(arguments);
             }
-            gtag('js', new Date());
-            gtag('config', 'G-VP97YYDPP0');
+            gtag("js", new Date());
+            gtag("config", "G-VP97YYDPP0");
         };
 
-       
+        //realtime
 
-//realtime
-
-        realtime = new Realtime({ authUrl: '/ablyauth' });
-        realtime.connection.once('connected', () => {
-            alert("double tap the heart to send love");
-          
+        realtime = new Realtime({ authUrl: "/ablyauth" });
+        realtime.connection.once("connected", () => {
+            alert(
+                "Welcome to the Ghost_in_the_Machine. You have 10 love credits.",
+            );
         });
-    
 
-        channel = realtime.channels.get('get-started');
+        channel = realtime.channels.get("get-started");
 
-
-        
-   
-        document.addEventListener('touchend', handleDoubleTap);
+        document.addEventListener("touchend", handleDoubleTap);
     });
-
 
     onDestroy(() => {
-        document.removeEventListener('touchend', handleDoubleTap);
+        document.removeEventListener("touchend", handleDoubleTap);
     });
 
-
-//accessory functions
+    //accessory functions
 
     function handleDoubleTap(event) {
         const currentTime = new Date().getTime();
@@ -91,85 +75,141 @@
         count += 1;
         console.log("Count:" + count);
 
-        if (count === 5) {
-            backgroundColor = 'blue';
-            channel.publish('state', "state3");
-            alert('alter the installation');
-
-
-
+        if (count === 1) {
+            channel.publish("endless", "love");
         }
 
-        if (count === 10) {
-            backgroundColor = 'green';
-            channel.publish('state', "state3");
-            alert('refresh the installation');
+        if (count === 2) {
+            channel.publish("endless", "love");
+        }
+
+        if (count === 3) {
+            backgroundColor = "blue";
+            alert("alter the installation");
+            channel.publish("state", "state3");
+        }
+
+        if (count === 4) {
+            channel.publish("endless", "love");
+        }
+
+        if (count === 5) {
+            channel.publish("endless", "love");
+        }
+
+        if (count === 6) {
+            channel.publish("endless", "love");
+        }
+
+        if (count === 7) {
+            channel.publish("endless", "love");
+        }
+
+        if (count === 8) {
+            backgroundColor = "green";
+            alert("refresh the installation");
+            channel.publish("state", "state5");
            
         }
 
-        if (count === 15) {
-           // updateLove();
+        if (count === 9) {
+            channel.publish("endless", "love");
+        }
+
+        if (count === 10) {
+            // updateLove();
             lastmessage = true;
-            backgroundColor = 'red';
-            channel.publish('state', "state6");
+            backgroundColor = "red";
+            channel.publish("state", "state6");
             //hearts = [];
             showCenterHeart = false; // Hide the center heart
             realtime.connection.close();
-       
-       
+
             //window.open("https://instagram.com/kolown", "_blank");
         }
 
-        channel.publish('endless', "love");
+        // channel.publish('endless', "love");
 
         const heart = {
-            id: Date.now()
+            id: Date.now(),
         };
 
         hearts = [...hearts, heart];
-       
+
         // Remove the heart after the animation ends
         setTimeout(() => {
-            hearts = hearts.filter(h => h.id !== heart.id);
+            hearts = hearts.filter((h) => h.id !== heart.id);
         }, 1000);
     }
 
-
-//ajax function
+    //ajax function
     async function updateLove() {
         try {
-            const response = await fetch('/api/updatelove', {
-                method: 'POST',
+            const response = await fetch("/api/updatelove", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     // Add any data you need to send here, if any
-                })
+                }),
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error("Network response was not ok");
             }
 
             const data = await response.json();
-            console.log('Love count updated:', data);
+            console.log("Love count updated:", data);
         } catch (error) {
-            console.error('Error updating love count:', error);
+            console.error("Error updating love count:", error);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 </script>
+
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+
+<main style="--background-color: {backgroundColor}">
+    <div class="count-display text-stone-50"></div>
+
+    {#if count == 0}
+        <div class="count-display text-stone-50">Double tap to send love</div>
+    {/if}
+
+    {#if count > 0 && count <= messages.length}
+        <div class="count-display text-stone-50">{messages[count - 1]}</div>
+    {/if}
+
+    {#if lastmessage === true}
+        <div class="count-display text-stone-50">
+            <p>You have reached the maximum love limit.</p>
+            &nbsp; &nbsp; &nbsp;
+            <p>Ghosts_in_the_Machine</p>
+            <p>a love project by:</p>
+            <p class="text-2xl font-extrabold">KoloWn</p>
+            &nbsp; &nbsp;
+
+            <p>
+                <a
+                    href="https://instagram.com/kolown"
+                    class="text-2xl font-extrabold"
+                >
+                    Heart us on Instagram
+                </a>
+            </p>
+        </div>
+    {/if}
+
+    {#if showCenterHeart}
+        {count}
+        <div class="center-heart"></div>
+
+        {#each hearts as heart (heart.id)}
+            <div class="heart"></div>
+        {/each}
+    {/if}
+</main>
 
 <style>
     main {
@@ -188,9 +228,7 @@
         top: 100px; /* 100px below the top of the screen */
         left: 50%;
         transform: translateX(-50%);
-   
     }
-
 
     .center-heart {
         position: fixed;
@@ -198,7 +236,7 @@
         left: 50%;
         width: 50px;
         height: 50px;
-        background-image: url('/public/storage/assets/gitm/heart.svg'); 
+        background-image: url("/public/storage/assets/gitm/heart.svg");
         transform: translate(-50%, -50%);
     }
 
@@ -206,7 +244,7 @@
         position: absolute;
         width: 50px;
         height: 50px;
-        background-image: url('/public/storage/assets/gitm/heart.svg'); 
+        background-image: url("/public/storage/assets/gitm/heart.svg");
         background-size: cover;
         animation: fade 1s ease-out forwards;
     }
@@ -222,47 +260,3 @@
         }
     }
 </style>
-
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-
-
-
-
-<main style="--background-color: {backgroundColor}">
-    <div class="count-display text-stone-50"></div>
-
-    {#if count == 0 }
-    <div class="count-display text-stone-50">you have 15 love power</div>
-{/if}
-
-    {#if count > 0 && count <= messages.length}
-    <div class="count-display text-stone-50">{messages[count - 1]}</div>
-{/if}
-
-{#if lastmessage === true}
-    <div class="count-display text-stone-50">
-        <p> You have reached the maximum love limit. </p>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <p> Ghosts_in_the_Machine </p>
-        <p> a love project by: </p>
-        <p class="text-2xl font-extrabold"> KoloWn </p>
-
-
-
-    </div> 
-    
-{/if}
-
-
-    {#if showCenterHeart}
-        {count}
-        <div class="center-heart"></div>
-
-        {#each hearts as heart (heart.id)}
-            <div class="heart"></div>
-        {/each}
-    {/if}
-</main>
