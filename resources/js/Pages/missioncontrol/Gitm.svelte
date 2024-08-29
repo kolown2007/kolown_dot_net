@@ -6,6 +6,7 @@
    let audience;
    let devices;
    let channel;
+
    
 
 
@@ -23,10 +24,14 @@
             await channel.subscribe('[meta]occupancy', (message) => {
                 console.log('occupancy: ', message.data.metrics);
                 audience = message.data.metrics.publishers;
-                devices = message.data.metrics.subscribers;
-               
-              
+
+                devices = message.data.metrics.subscribers - message.data.metrics.publishers;
+  
             });
+
+       
+
+                    
 
          
         } catch (error) {
@@ -53,11 +58,15 @@ function submit(value) {
        </div>
        &nbsp;
      
-       <div> <a href ="https://kolown.com/docs/gitm" > Documentation </a></div>
+       <div> <a href ="https://kolown.com/docs/gitm" > Docs </a></div>
        &nbsp;
-       &nbsp;
-       <div> <p>audience:{audience}</p>
+
+       <div> 
+        <p class ="text-slate-200 font-bold"> Online Stats</p>
+        
+        <p>endlessLove:{audience}</p>
          <p>GITM app:{devices}</p>
+       
     
        </div>
    

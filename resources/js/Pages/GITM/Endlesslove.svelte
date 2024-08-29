@@ -1,5 +1,5 @@
 <script>
-    import { Realtime } from 'ably';
+    import { Realtime,presence } from 'ably';
     import { onMount, onDestroy } from 'svelte';
 
 
@@ -11,6 +11,7 @@
     let lastTap = 0;
 
     let realtime;
+  
     let channel;
 
     const messages = [
@@ -50,16 +51,22 @@
             gtag('config', 'G-VP97YYDPP0');
         };
 
-
+       
 
 //realtime
 
         realtime = new Realtime({ authUrl: '/ablyauth' });
         realtime.connection.once('connected', () => {
             alert("double tap the heart to send love");
+          
         });
+    
 
         channel = realtime.channels.get('get-started');
+
+
+        
+   
         document.addEventListener('touchend', handleDoubleTap);
     });
 
