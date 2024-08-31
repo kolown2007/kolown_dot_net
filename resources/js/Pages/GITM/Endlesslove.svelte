@@ -170,7 +170,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 
-<main style="--background-color: {backgroundColor}">
+<main style="--background-color: {backgroundColor}" class="font-mono">
     <div class="count-display text-stone-50"></div>
 
     {#if count == 0}

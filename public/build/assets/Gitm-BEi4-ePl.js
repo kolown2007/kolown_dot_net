@@ -1,4 +1,4 @@
-import{S as W,a as Y,s as z,e,t as k,b as i,d as n,f as B,g as t,l as v,u as R,n as U,j as J,r as N,p as P}from"./app-BCR8HfEi.js";import{a as Q}from"./ably-ie8FdBvY.js";function V(r){let o,d,y,w,u,p,s,C,$,M,E,j,L,l,D,c,T,G,a,b,q,h,A,m,F,_,H,f,I,g,O,K;return{c(){o=e("main"),d=e("div"),y=e("h1"),y.textContent=`KoloWn App : Ghost in the Machine ${r[2]}`,w=k(`
+import{S as W,a as Y,s as z,e,t as k,b as i,d as n,f as B,g as t,l as v,u as R,n as U,j as J,r as N,p as P}from"./app-Bzt2u3t2.js";import{a as Q}from"./ably-CMiGP4iP.js";function V(r){let o,d,y,w,u,p,s,C,$,M,E,j,L,l,D,c,T,G,a,b,q,h,A,m,F,_,H,f,I,g,O,K;return{c(){o=e("main"),d=e("div"),y=e("h1"),y.textContent=`KoloWn App : Ghost in the Machine ${r[2]}`,w=k(`
         
      
        `),u=e("div"),u.innerHTML='<a href="https://kolown.com/docs/gitm">Docs</a>',p=k(`
