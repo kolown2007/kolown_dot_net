@@ -1,6 +1,7 @@
 <script>
     import { Realtime } from 'ably';
     import { onMount } from 'svelte';
+   
     let D = new Date().getFullYear();
     let audience;
     let devices;

@@ -1,6 +1,7 @@
 <script>
     import { Realtime } from "ably";
     import { onMount, onDestroy } from "svelte";
+    import * as Tone from "tone";
 
     let hearts = [];
     let count = 0;
@@ -12,6 +13,10 @@
     let realtime;
 
     let channel;
+
+    //music notes
+    const synth = new Tone.Synth().toDestination();
+    const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"];
 
     const messages = [
         "You have 9 love credits left",
@@ -54,6 +59,7 @@
         channel = realtime.channels.get("get-started");
 
         document.addEventListener("touchend", handleDoubleTap);
+      
     });
 
     onDestroy(() => {
@@ -74,6 +80,12 @@
     async function handleTap() {
         count += 1;
         console.log("Count:" + count);
+
+    //sound component
+      playRandomNote();
+
+      //vibration
+      navigator.vibrate(200);
 
         if (count === 1) {
             channel.publish("endless", "love");
@@ -108,7 +120,7 @@
         if (count === 8) {
             backgroundColor = "green";
             alert("refresh the installation");
-            channel.publish("state", "state5");
+            channel.publish("state", "state1");
            
         }
 
@@ -120,15 +132,15 @@
             // updateLove();
             lastmessage = true;
             backgroundColor = "red";
-            channel.publish("state", "state6");
-            //hearts = [];
+            channel.publish("state", "state4");
             showCenterHeart = false; // Hide the center heart
             realtime.connection.close();
+            synth.dispose();
 
-            //window.open("https://instagram.com/kolown", "_blank");
+         
         }
 
-        // channel.publish('endless', "love");
+  
 
         const heart = {
             id: Date.now(),
@@ -140,6 +152,17 @@
         setTimeout(() => {
             hearts = hearts.filter((h) => h.id !== heart.id);
         }, 1000);
+    }
+
+    //random sound function
+    function getRandomNote() {
+        const randomIndex = Math.floor(Math.random() * notes.length);
+        return notes[randomIndex];
+    }
+
+    function playRandomNote() {
+        const randomNote = getRandomNote();
+        synth.triggerAttackRelease(randomNote, "8n");
     }
 
     //ajax function
@@ -182,6 +205,8 @@
     {/if}
 
     {#if lastmessage === true}
+
+
         <div class="count-display text-stone-50">
             <p>You have reached the maximum love limit.</p>
             &nbsp; &nbsp; &nbsp;
