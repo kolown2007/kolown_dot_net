@@ -50,9 +50,9 @@
     }
 </script>
 
-<main class="h-screen flex flex-col justify-between items-center px-4 py-10 bg-black text-red-900 font-mono">
- <h1>KoloWn App : Ghost in the Machine {D}</h1> 
-<a href="https://kolown.com/docs/gitm">Docs</a>
+<main class="h-screen flex flex-col justify-center items-center px-4 py-10 bg-black text-red-900 font-mono">
+ <!-- <h1>KoloWn App : Ghost in the Machine {D}</h1> 
+<a href="https://kolown.com/docs/gitm">Docs</a> -->
 
     <div>
         <p class="text-slate-200 font-bold">Online Stats</p>
@@ -61,7 +61,7 @@
     </div>
 
     {#if isConnected}
-        <div class="p-4 grid grid-cols-2 gap-8"> <!-- Adjust grid-cols-2 to the desired number of columns -->
+        <div class="p-4 grid grid-cols-2 gap-8 mt-4"> <!-- Adjust grid-cols-2 to the desired number of columns -->
             <button
                 id="send-button-1"
                 class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-400 transition duration-300"

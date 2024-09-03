@@ -13,10 +13,10 @@ class LoveUpdate extends Controller
     {
         $love = Love::first();
         if ($love) {
-            $love->love += 15;
+            $love->love += 10;
             $love->save();
         } else {
-            Love::create(['love' => 15]);
+            Love::create(['love' => 10]);
         }
 
         return response()->json(['message' => 'Love count updated'], 200);

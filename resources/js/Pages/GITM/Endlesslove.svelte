@@ -9,6 +9,8 @@
     let showCenterHeart = true;
     let lastmessage = false;
     let lastTap = 0;
+    let isconnected = false;
+    let lovebg = "https://kolown.net/assets/gitm/love.jpg";
 
     let realtime;
 
@@ -52,8 +54,12 @@
         realtime = new Realtime({ authUrl: "/ablyauth" });
         realtime.connection.once("connected", () => {
             alert(
-                "Welcome to the Ghost_in_the_Machine. You have 10 love credits.",
+                "You have 10 love credits.",
             );
+        });
+
+        realtime.connection.on("connected", () => {
+         isconnected = true;
         });
 
         channel = realtime.channels.get("get-started");
@@ -129,9 +135,8 @@
         }
 
         if (count === 10) {
-            // updateLove();
+            updateLove();
             lastmessage = true;
-            backgroundColor = "red";
             channel.publish("state", "state4");
             showCenterHeart = false; // Hide the center heart
             realtime.connection.close();
@@ -204,29 +209,26 @@
         <div class="count-display text-stone-50">{messages[count - 1]}</div>
     {/if}
 
+    {#if count === 10}
+    <div class="background" style="background-image: url({lovebg});"></div>
+{/if}
+
     {#if lastmessage === true}
 
+<div class= "full-screen-bg"> 
 
-        <div class="count-display text-stone-50">
-            <p>You have reached the maximum love limit.</p>
-            &nbsp; &nbsp; &nbsp;
-            <p>Ghosts_in_the_Machine</p>
-            <p>a love project by:</p>
-            <p class="text-2xl font-extrabold">KoloWn</p>
-            &nbsp; &nbsp;
-
-            <p>
-                <a
-                    href="https://instagram.com/kolown"
-                    class="text-2xl font-extrabold"
-                >
-                    Heart us on Instagram
-                </a>
-            </p>
+    <div class="fixed bottom-0 left-0 right-0 flex justify-center items-center p-4  text-slate-50">
+        <div class="text-center">
+            <p class="text-4xl">You have reached the maximum love limit.</p>
+            <p class="text-4xl">Thank you for participating.</p>
         </div>
+    </div>
+
+    </div>
+
     {/if}
 
-    {#if showCenterHeart}
+    {#if isconnected && showCenterHeart}
         {count}
         <div class="center-heart"></div>
 
@@ -273,6 +275,22 @@
         background-size: cover;
         animation: fade 1s ease-out forwards;
     }
+
+    .full-screen-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('https://kolown.net/assets/gitm/love.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10; /* Ensure it is above other content */
+    }
+    
 
     @keyframes fade {
         0% {
