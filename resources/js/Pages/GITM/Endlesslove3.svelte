@@ -12,7 +12,7 @@
     onMount(() => {
         realtime = new Realtime({ authUrl: '/ablyauth' });
         realtime.connection.once('connected', () => {
-            //alert("you have 15 love limit");
+            alert("tap the heart");
             channel = realtime.channels.get('get-started');
         });
      
@@ -31,24 +31,17 @@
         count += 1;
         console.log("click:" + count);
 
-        if (count === 3) {
-            backgroundColor = 'blue';
-            channel.publish('state', "state3");
-         
-        }
+        channel.publish('endless', "love");
 
-        if (count === 6) {
-            backgroundColor = 'green';
-            channel.publish('state', "state1");
-            
-        }
+        let stateStrings = ['state1', 'state2', 'state3', 'state4', 'state5', ];
+        let randomState = stateStrings[Math.floor(Math.random() * stateStrings.length)];
 
-        if (count === 9) {
-            backgroundColor = 'red';
-            channel.publish('state', "5");
-        
+        if (count === 10) {
+            channel.publish('state', randomState); 
+
             setTimeout(() => {
                 realtime.connection.close();
+                updateLove();
                 backgroundColor = '#080101'; // Reset the background color after a short delay
             }, 100); // Adjust the delay as needed
            // window.open("https://instagram.com/kolown", "_blank");
@@ -60,11 +53,53 @@
         // Check if the images array is empty
         if (images.length === 0) {
             showComponent = false;
-        }
+        } 
+    }
 
-        channel.publish('endless', "love");
+
+
+
+    async function updateLove() {
+        try {
+            const response = await fetch("/api/updatelove", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // Add any data you need to send here, if any
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+            console.log("Love count updated:", data);
+        } catch (error) {
+            console.error("Error updating love count:", error);
+        }
     }
 </script>
+
+<style>
+
+.full-screen-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('https://kolown.net/assets/gitm/love.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10; /* Ensure it is above other content */
+    }
+</style>
 
 
 <main class="relative w-screen h-screen overflow-hidden flex justify-center items-center" style="background-color: {backgroundColor}">
@@ -88,4 +123,10 @@
     {/each}
     </div>
   {/if}
+
+  {#if !showComponent}
+    <div class="full-screen-bg">
+        <!-- Your content here -->
+    </div>
+{/if}
 </main>

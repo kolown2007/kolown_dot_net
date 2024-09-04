@@ -1,7 +1,14 @@
 {
-  "_ably-ByYT9ttc.js": {
-    "file": "assets/ably-ByYT9ttc.js",
+  "_ably-CEw0Ge6q.js": {
+    "file": "assets/ably-CEw0Ge6q.js",
     "name": "ably",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_index-ChWuH1nm.js": {
+    "file": "assets/index-ChWuH1nm.js",
+    "name": "index",
     "imports": [
       "resources/js/app.js"
     ]
@@ -12,7 +19,7 @@
     "isEntry": true
   },
   "resources/js/Pages/App.svelte": {
-    "file": "assets/App-wpo0vXKM.js",
+    "file": "assets/App-IEL5oRTk.js",
     "name": "App",
     "src": "resources/js/Pages/App.svelte",
     "isDynamicEntry": true,
@@ -21,13 +28,13 @@
     ]
   },
   "resources/js/Pages/GITM/Endlesslove.svelte": {
-    "file": "assets/Endlesslove-BOYVGeeH.js",
+    "file": "assets/Endlesslove-ChrNilwD.js",
     "name": "Endlesslove",
     "src": "resources/js/Pages/GITM/Endlesslove.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ably-ByYT9ttc.js"
+      "_ably-CEw0Ge6q.js"
     ],
     "css": [
       "assets/Endlesslove-DpMfbUVc.css"
@@ -37,17 +44,32 @@
     ]
   },
   "resources/js/Pages/GITM/Endlesslove2.svelte": {
-    "file": "assets/Endlesslove2-6-Kkq_f0.js",
+    "file": "assets/Endlesslove2-DvaYee9j.js",
     "name": "Endlesslove2",
     "src": "resources/js/Pages/GITM/Endlesslove2.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ably-ByYT9ttc.js"
+      "_ably-CEw0Ge6q.js",
+      "_index-ChWuH1nm.js"
+    ]
+  },
+  "resources/js/Pages/GITM/Endlesslove3.svelte": {
+    "file": "assets/Endlesslove3-1Jn9xiuw.js",
+    "name": "Endlesslove3",
+    "src": "resources/js/Pages/GITM/Endlesslove3.svelte",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_ably-CEw0Ge6q.js",
+      "_index-ChWuH1nm.js"
+    ],
+    "css": [
+      "assets/Endlesslove3-Cbd6oxXK.css"
     ]
   },
   "resources/js/Pages/GhostWriter/GhostWriter.svelte": {
-    "file": "assets/GhostWriter-CrtQXB3b.js",
+    "file": "assets/GhostWriter-orGIbCQb.js",
     "name": "GhostWriter",
     "src": "resources/js/Pages/GhostWriter/GhostWriter.svelte",
     "isDynamicEntry": true,
@@ -59,7 +81,7 @@
     ]
   },
   "resources/js/Pages/Home.svelte": {
-    "file": "assets/Home-D3v5O9Si.js",
+    "file": "assets/Home-BHn_4Bgw.js",
     "name": "Home",
     "src": "resources/js/Pages/Home.svelte",
     "isDynamicEntry": true,
@@ -68,7 +90,7 @@
     ]
   },
   "resources/js/Pages/Layout.svelte": {
-    "file": "assets/Layout-Boxmr7nu.js",
+    "file": "assets/Layout-Bkj2tOeG.js",
     "name": "Layout",
     "src": "resources/js/Pages/Layout.svelte",
     "isDynamicEntry": true,
@@ -77,17 +99,17 @@
     ]
   },
   "resources/js/Pages/missioncontrol/Gitm.svelte": {
-    "file": "assets/Gitm-mQ0udu3g.js",
+    "file": "assets/Gitm-BfLXQqCD.js",
     "name": "Gitm",
     "src": "resources/js/Pages/missioncontrol/Gitm.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ably-ByYT9ttc.js"
+      "_ably-CEw0Ge6q.js"
     ]
   },
   "resources/js/Pages/missioncontrol/Gitm_allowedemail.svelte": {
-    "file": "assets/Gitm_allowedemail-B8zNSdcC.js",
+    "file": "assets/Gitm_allowedemail-Dnkvxebv.js",
     "name": "Gitm_allowedemail",
     "src": "resources/js/Pages/missioncontrol/Gitm_allowedemail.svelte",
     "isDynamicEntry": true,
@@ -96,7 +118,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-Bd15ZZ6F.js",
+    "file": "assets/app-DWYraVgU.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -104,6 +126,7 @@
       "resources/js/Pages/App.svelte",
       "resources/js/Pages/GITM/Endlesslove.svelte",
       "resources/js/Pages/GITM/Endlesslove2.svelte",
+      "resources/js/Pages/GITM/Endlesslove3.svelte",
       "resources/js/Pages/GhostWriter/GhostWriter.svelte",
       "resources/js/Pages/Home.svelte",
       "resources/js/Pages/Layout.svelte",

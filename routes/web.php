@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 //GITM project
 //endless love route
-Route::inertia('/endlesslove', 'GITM/Endlesslove');
+Route::inertia('/endlesslove', 'GITM/Endlesslove3');
 //mission control allowed email route
 Route::get('missioncontrol/allowedemail', function (Request $request) {
     if (!$request->session()->has('googleUser')) {
