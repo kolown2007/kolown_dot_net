@@ -54,6 +54,9 @@ Route::post('/updatelove', [LoveUpdate::class, 'updateLove']);
 Route::get('/scrape-headline', [WebScrapController::class, 'scrapeHeadline']);
 //ghostwriter for generating fake stories
 Route::get('/ghoststory', [GhostwriterController::class, 'ghoststory']);
+//ghostwriter for generating fake stories cronjob, to be consumed by frontend
+Route::get('/ghoststory2', [GhostwriterController::class, 'ghoststory2']);
+
 
 
 //ACCESSORY ROUTES

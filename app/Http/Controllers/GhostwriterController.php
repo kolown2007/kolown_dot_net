@@ -48,6 +48,8 @@ class GhostwriterController extends Controller
         $story = $result['choices'][0]['message']['content'] ?? 'No story generated.';
 
         //return response()->json(['story' => $story]);
+        $filePath = storage_path('app/public/story.txt');
+        file_put_contents($filePath, $story);
 
         return response($story, 200)
         ->header('Content-Type', 'text/plain');
@@ -57,5 +59,24 @@ class GhostwriterController extends Controller
     
     }
 
-    
+    public function ghoststory2(){
+            // Define the path to the .txt file
+    $filePath = storage_path('app/public/story.txt');
+
+    // Check if the file exists
+    if (!file_exists($filePath)) {
+        return response('File not found.', 404)
+            ->header('Content-Type', 'text/plain');
+    }
+
+    // Read the contents of the file
+    $story = file_get_contents($filePath);
+
+    // Return the contents in the response
+    return response($story, 200)
+        ->header('Content-Type', 'text/plain');
+
+    }
+
+
 }
