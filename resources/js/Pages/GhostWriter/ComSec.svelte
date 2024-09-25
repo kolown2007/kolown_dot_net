@@ -1,7 +1,8 @@
 <script lang="ts">
-      import { onMount } from 'svelte';
-      import { Realtime } from 'ably';
-  import { useForm } from '@inertiajs/svelte'
+    import { onMount } from 'svelte';
+    import { Realtime } from 'ably';
+    import { useForm } from '@inertiajs/svelte'
+
   let D = new Date().getFullYear();
 
   let realtime: Realtime;
@@ -22,17 +23,10 @@
            sms:"",
           })
    
-//      function submit() {
-//      $values.post('/trigger',{
-//      preserveScroll: true,
-//      onSuccess: () => $values.sms = '',
-//    });
-//      console.log($values.sms);
-   
-//    }
+
 
 function submit() {
-    channel.publish('sms', $values.sms);
+    channel.publish('message', $values.sms);
     console.log($values.sms);
     $values.sms = '';
   
@@ -67,8 +61,6 @@ class="h-screen flex flex-col justify-between items-center px-4 py-4 bg-black te
     </div>
 
 </div>
-
-
 
 
 </main>
