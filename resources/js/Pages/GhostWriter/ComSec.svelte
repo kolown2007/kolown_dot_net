@@ -33,7 +33,7 @@
 //    }
 
 function submit() {
-    channel.publish('ghostwriter', $values.sms);
+    channel.publish('sms', $values.sms);
     console.log($values.sms);
     $values.sms = '';
   
