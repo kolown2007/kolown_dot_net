@@ -1,7 +1,6 @@
 <script lang="ts">
       import { onMount } from 'svelte';
       import { Realtime } from 'ably';
-  import Pusher from 'pusher-js';
   import { useForm } from '@inertiajs/svelte'
   let D = new Date().getFullYear();
 
