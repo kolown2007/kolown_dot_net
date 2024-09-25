@@ -14,6 +14,7 @@
         realtime.connection.once('connected', () => {
         
             channel = realtime.channels.get('get-started');
+         
         });
 
         realtime.connection.on('failed', (err) => {

@@ -60,4 +60,9 @@ Route::get('/ghostwriter', function () {
     return Inertia::render('GhostWriter/GhostWriter');
 });
 
+Route::get('/comsec', function () {
+    return Inertia::render('GhostWriter/ComSec');
+});
+
+
 

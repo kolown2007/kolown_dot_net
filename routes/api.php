@@ -30,6 +30,8 @@ Route::get('/run-nodejs', [NodeController::class, 'runCommands']);
 //FUNCTIONALITY ROUTES
 //ably auth token route
 Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
+//pusher auth token route
+Route::get('/pusherauth', [SmsController::class, 'PusherTokenRequest']);
 
 
 //NEVERENDING STORY PROJECT
