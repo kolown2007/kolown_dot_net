@@ -13,7 +13,7 @@
         realtime = new Realtime({ authUrl: '/ablyauth' });
         realtime.connection.once('connected', () => {
         
-            channel = realtime.channels.get('get-started');
+        channel = realtime.channels.get('get-started');
          
         });
 
@@ -46,7 +46,7 @@
             showComponent = false;
 
             // Execute the logic when the last heart is tapped
-            channel.publish('state', randomState);
+            // channel.publish('state', randomState);
 
             setTimeout(() => {
                 realtime.connection.close();
