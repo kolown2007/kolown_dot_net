@@ -14,6 +14,7 @@
         realtime.connection.once('connected', () => {
         
         channel = realtime.channels.get('get-started');
+        fetch('/api/kolown_bot');
          
         });
 

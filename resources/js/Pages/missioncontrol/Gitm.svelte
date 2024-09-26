@@ -56,8 +56,8 @@
 
     <div>
         <p class="text-slate-200 font-bold">Online Stats</p>
-        <p>endlessLove: {audience}</p>
-        <p>GITM app: {devices}</p>
+
+        <p>active phones: {devices}</p>
     </div>
 
     {#if isConnected}
@@ -88,11 +88,7 @@
                 class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-400 transition duration-300"
                 on:click={() => submit('state5')}>state5</button>
 
-            <button
-                id="send-button-6"
-                class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-400 transition duration-300"
-                on:click={() => submit('state6')}>state6</button>
-
+         
             <button
                 id="send-button-7"
                 class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-400 transition duration-300"

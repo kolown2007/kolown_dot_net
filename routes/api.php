@@ -14,6 +14,9 @@ use App\Http\Controllers\SmsController;
 use App\Http\Controllers\NodeController;
 use App\Http\Controllers\ImageScrapController;
 use App\Http\Controllers\LoveUpdate;
+use App\Http\Middleware\SendTelegramMessage;
+
+use App\Http\Controllers\TelegramBotController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -66,3 +69,6 @@ Route::get('/date', function () {
     return Carbon::now()->toDateString();
 });
 
+
+//TELEGRAM_BOT ROUTES
+Route::get('/kolown_bot', [TelegramBotController::class, 'sendMessage']);
