@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MessageController;
 use App\Http\Controllers\GitController;
 use App\Http\Controllers\GITMcontroller;
 use Carbon\Carbon;
@@ -14,7 +13,7 @@ use App\Http\Controllers\SmsController;
 use App\Http\Controllers\NodeController;
 use App\Http\Controllers\ImageScrapController;
 use App\Http\Controllers\LoveUpdate;
-use App\Http\Middleware\SendTelegramMessage;
+
 
 use App\Http\Controllers\TelegramBotController;
 
@@ -34,24 +33,12 @@ Route::get('/run-nodejs', [NodeController::class, 'runCommands']);
 //ably auth token route
 Route::get('/ablyauth', [SmsController::class, 'TokenRequest']);
 //pusher auth token route
-Route::get('/pusherauth', [SmsController::class, 'PusherTokenRequest']);
-
-
-//NEVERENDING STORY PROJECT
-//current story for neverending story project
-Route::get('/storytoday', [MessageController::class, 'showCurrentStory']);
-//mainstory for neverending story project
-Route::get('/storymain', [MessageController::class, 'showMainStory']);
-//route for the messages of the day
-Route::get('/messagestoday', [MessageController::class, 'showMessage']);
-
 
 //GHOST IN THE MACHINE PROJECT
-//json data for gitm assets
-Route::get('/gitm-data', [GITMcontroller::class, 'gitm']);
+
+
 //allowed email for ghost in the machine
 Route::post('/allowedemail', [AllowedEmailController::class, 'store']);
-Route::get('/leeum', [ImageScrapController::class, 'leeumimagescrapper']);
 Route::post('/updatelove', [LoveUpdate::class, 'updateLove']);
 
 //GHOSTWRITER PROJECT

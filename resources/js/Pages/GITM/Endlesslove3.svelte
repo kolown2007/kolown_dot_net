@@ -4,21 +4,30 @@
     import { fly } from 'svelte/transition';
 
     let showComponent: boolean = true;
-    let count = 0;
-    let backgroundColor = '#080101';
+    let count: number = 0;
+    let backgroundColor: string = '#080101';
     let realtime: Realtime;
     let channel: any;
 
-    onMount(() => {
+    onMount((): void => {
+        let gtmId: string = 'G-VP97YYDPP0';
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        function gtag(...args: any[]): void {
+            (window as any).dataLayer.push(args);
+        }
+        gtag('js', new Date());
+        gtag('config', gtmId);
+        const s: HTMLScriptElement = document.createElement('script');
+        s.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+        document.head.append(s);
+
         realtime = new Realtime({ authUrl: '/ablyauth' });
         realtime.connection.once('connected', () => {
-        
-        channel = realtime.channels.get('get-started');
-        fetch('/api/kolown_bot');
-         
+            channel = realtime.channels.get('get-started');
+            fetch('/api/kolown_bot');
         });
 
-        realtime.connection.on('failed', (err) => {
+        realtime.connection.on('failed', (err: any) => {
             console.error('Connection failed:', err);
         });
 
@@ -30,7 +39,7 @@
         url: 'https://kolown.net/assets/gitm/heart.svg'
     }));
 
-    async function handleTap(index: number) {
+    async function handleTap(index: number): Promise<void> {
         count += 1;
         console.log("click:" + count);
 
@@ -60,7 +69,7 @@
         }
     }
 
-    async function updateLove() {
+    async function updateLove(): Promise<void> {
         try {
             const response = await fetch("/api/updatelove", {
                 method: "POST",
@@ -123,8 +132,13 @@
         <div class="full-screen-bg">
             <!-- Your content here -->
             <div class="fixed bottom-3 text-center text-white font-mono">
-               
                 <p class="text-4xl">Thank you for participating.</p>
+                <button
+                    class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                    on:click={() => window.open("https://instagram.com/kolown", "_blank")}
+                >
+                    Visit our Instagram
+                </button>
             </div>
         </div>
     {/if}
