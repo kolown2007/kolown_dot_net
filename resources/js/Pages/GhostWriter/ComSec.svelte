@@ -25,12 +25,40 @@
    
 
 
-function submit() {
-    channel.publish('message', $values.sms);
-    console.log($values.sms);
-    $values.sms = '';
+// function submit() {
+//     channel.publish('message', $values.sms);
+//     console.log($values.sms);
+//     $values.sms = '';
   
-}
+// }
+
+async function submit() {
+        channel.publish('message', $values.sms);
+        console.log($values.sms);
+
+        // Send the submitted text to the server using fetch
+        try {
+            const response = await fetch('/api/ghostwritermessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: $values.sms }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log('Message saved to database', data);
+        } catch (error) {
+            console.error('Error saving message:', error);
+        }
+
+        $values.sms = '';
+    }
+
 
 </script>
 

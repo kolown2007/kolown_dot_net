@@ -13,6 +13,7 @@ use App\Http\Controllers\SmsController;
 use App\Http\Controllers\NodeController;
 use App\Http\Controllers\ImageScrapController;
 use App\Http\Controllers\LoveUpdate;
+use App\Http\Controllers\GhostWriterMessageController;
 
 
 use App\Http\Controllers\TelegramBotController;
@@ -48,6 +49,8 @@ Route::get('/scrape-headline', [WebScrapController::class, 'scrapeHeadline']);
 Route::get('/ghoststory', [GhostwriterController::class, 'ghoststory']);
 //ghostwriter for generating fake stories cronjob, to be consumed by frontend
 Route::get('/ghoststory2', [GhostwriterController::class, 'ghoststory2']);
+//message submission
+Route::post('/ghostwritermessage', [GhostWriterMessageController::class, 'store']);
 
 
 

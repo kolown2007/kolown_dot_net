@@ -1,4 +1,4 @@
-import{H as X}from"./app-CCKW6RJI.js";var ms={exports:{}};/*@license Copyright 2015-2022 Ably Real-time Ltd (ably.com)
+import{G as X}from"./app-CPsLQVNl.js";var ms={exports:{}};/*@license Copyright 2015-2022 Ably Real-time Ltd (ably.com)
 
 Ably JavaScript Library v2.3.1
 https://github.com/ably/ably-js
