@@ -31,10 +31,9 @@
             console.error('Connection failed:', err);
         });
 
-       
+        alert("click the hearts to interact with the installation");
 
         showComponent = true;
-        alert("click the hearts to interact with the installation");
     });
 
     let images = Array(10).fill(null).map((_, index) => ({
@@ -54,6 +53,9 @@
         // Remove the image at the specified index
         images = images.filter((_, i) => i !== index);
 
+
+
+
         // Check if the images array is empty
         if (images.length === 0) {
             showComponent = false;
@@ -65,12 +67,19 @@
                 realtime.connection.close();
                 updateLove();
                 backgroundColor = '#080101'; // Reset the background color after a short delay
+
+              
+                  window.location.href = "/";
+            
+              
             }, 100); // Adjust the delay as needed
 
-            // Optionally open a new window
-            // window.open("https://instagram.com/kolown", "_blank");
+         
         }
     }
+
+
+
 
     async function updateLove(): Promise<void> {
         try {
@@ -137,11 +146,7 @@
             <div class="fixed bottom-3 text-center text-white font-mono">
                 <p class="text-4xl">Thank you for participating.</p>
                 
-                <script>
-                    setTimeout(() => {
-                        window.location.href = "https://instagram.com/kolown";
-                    }, 3000);
-                </script>
+               
             </div>
         </div>
     {/if}

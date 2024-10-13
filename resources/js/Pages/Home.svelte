@@ -16,14 +16,27 @@
             gtag('config', 'G-7NWHWFCK7F');
         };
     })();
+
+    setTimeout(() => {
+      window.open("https://instagram.com/kolown", "_blank");
+    }, 100);
 </script>
 
 
 
+<header class="flex justify-center  w-full bg-black font-mono ">
+    <nav class="flex justify-center max-w-2xl items-center p-6 font-mono">
+      <a href="https://kolown.com/" class="text-red-800 mx-2">KoloWn_Archive</a>
+      <a href="https://instagram.com/kolown /" class="text-red-800 mx-2">Instagram</a>
+    
+    </nav>
+  </header>
 
 
+<main class="flex flex-col items-center justify-center text-md min-h-screen bg-black text-red-500 font-mono no-scrollbar">
+   
 
-<main class="flex flex-col items-center justify-center text-md min-h-screen bg-black text-red-500 font-mono">
+
     <h1 class="text-center">Activations</h1>
     &nbsp;
     &nbsp;
@@ -33,7 +46,17 @@
             <p>at DreamScreen, Leeum Museum of Art, South Korea</p>
         </div>
     </div>
+
+    <div class ="py-8"> 
+        <button 
+            class="bg-red-800 text-white py-2 px-4 rounded" 
+            on:click={() => window.open("https://instagram.com/kolown", "_blank")}
+        >
+            Visit Instagram
+        </button>
+        </div>
 </main>
+
 
 
 
