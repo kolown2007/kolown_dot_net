@@ -31,7 +31,10 @@
             console.error('Connection failed:', err);
         });
 
+       
+
         showComponent = true;
+        alert("click the hearts to interact with the installation");
     });
 
     let images = Array(10).fill(null).map((_, index) => ({
@@ -133,12 +136,12 @@
             <!-- Your content here -->
             <div class="fixed bottom-3 text-center text-white font-mono">
                 <p class="text-4xl">Thank you for participating.</p>
-                <button
-                    class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                    on:click={() => window.open("https://instagram.com/kolown", "_blank")}
-                >
-                    Visit our Instagram
-                </button>
+                
+                <script>
+                    setTimeout(() => {
+                        window.location.href = "https://instagram.com/kolown";
+                    }, 3000);
+                </script>
             </div>
         </div>
     {/if}
