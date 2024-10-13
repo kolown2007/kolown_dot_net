@@ -106,20 +106,7 @@
 </script>
 
 <style>
-    .full-screen-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-image: url('https://kolown.net/assets/gitm/love.jpg');
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10; /* Ensure it is above other content */
-    }
+
 </style>
 
 <main class="relative w-screen h-screen overflow-hidden flex justify-center items-center" style="background-color: {backgroundColor}">
@@ -140,14 +127,5 @@
         </div>
     {/if}
 
-    {#if !showComponent}
-        <div class="full-screen-bg">
-            <!-- Your content here -->
-            <div class="fixed bottom-3 text-center text-white font-mono">
-                <p class="text-4xl">Thank you for participating.</p>
-                
-               
-            </div>
-        </div>
-    {/if}
+
 </main>

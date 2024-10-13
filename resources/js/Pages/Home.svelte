@@ -17,9 +17,7 @@
         };
     })();
 
-    setTimeout(() => {
-      window.open("https://instagram.com/kolown", "_blank");
-    }, 100);
+ 
 </script>
 
 
