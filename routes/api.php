@@ -45,12 +45,17 @@ Route::post('/updatelove', [LoveUpdate::class, 'updateLove']);
 //GHOSTWRITER PROJECT
 //scrape headline for ghostwriter projects currently rappler
 Route::get('/scrape-headline', [WebScrapController::class, 'scrapeHeadline']);
+
 //ghostwriter for generating fake stories
 Route::get('/ghoststory', [GhostwriterController::class, 'ghoststory']);
+
 //ghostwriter for generating fake stories cronjob, to be consumed by frontend
 Route::get('/ghoststory2', [GhostwriterController::class, 'ghoststory2']);
 //message submission
 Route::post('/ghostwritermessage', [GhostWriterMessageController::class, 'store']);
+
+
+
 
 //TELEGRAM_BOT ROUTES
 Route::get('/kolown_bot', [TelegramBotController::class, 'sendMessage']); //gitm
