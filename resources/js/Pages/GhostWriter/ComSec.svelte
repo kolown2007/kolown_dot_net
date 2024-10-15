@@ -4,6 +4,7 @@
     import { useForm } from '@inertiajs/svelte'
 
   let D = new Date().getFullYear();
+  let errorMessage = '';
 
   let realtime: Realtime;
   let channel: any;
@@ -25,41 +26,46 @@
    
 
 
-// function submit() {
-//     channel.publish('message', $values.sms);
-//     console.log($values.sms);
-//     $values.sms = '';
-  
-// }
 
-async function submit() {
-        channel.publish('message', $values.sms);
-        console.log($values.sms);
+          async function submit() {
+        const message = $values.sms.trim();
 
-        // Send the submitted text to the server using fetch
-        try {
-            const response = await fetch('/api/ghostwritermessage', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ content: $values.sms }),
-            });
+        // Validate that the input contains only one word
+        if (message.split(' ').length > 1) {
+            errorMessage = 'Please enter only one word.';
+            alert(errorMessage);
+        } else {
+            // Clear any previous error message
+            errorMessage = '';
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+            // Publish the message to the channel
+            channel.publish('message', message);
+            console.log(message);
+
+            // Send the submitted text to the server using fetch
+            try {
+                const response = await fetch('/api/ghostwritermessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ content: message }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                console.log('Message sent to server successfully:', data);
+            } catch (error) {
+                console.error('Error sending message to server:', error);
             }
 
-            const data = await response.json();
-            console.log('Message saved to database', data);
-        } catch (error) {
-            console.error('Error saving message:', error);
+            // Clear the input field
+            $values.sms = '';
         }
-
-        $values.sms = '';
     }
-
-
 </script>
 
 
@@ -72,12 +78,15 @@ class="h-screen flex flex-col justify-between items-center px-4 py-4 bg-black te
     <h1>KoloWn App {D}</h1>
 </div>
 
+
+
 <div class=" h-screen flex flex-col justify-center">
+    
     <div class="p-4 flex">
         <input
             id="sms"
             type="string"
-            placeholder="Type a message"
+            placeholder="1 word only"
             bind:value={$values.sms}
             class="w-full max-w-96 px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500"
         />

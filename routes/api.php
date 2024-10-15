@@ -52,7 +52,9 @@ Route::get('/ghoststory2', [GhostwriterController::class, 'ghoststory2']);
 //message submission
 Route::post('/ghostwritermessage', [GhostWriterMessageController::class, 'store']);
 
-
+//TELEGRAM_BOT ROUTES
+Route::get('/kolown_bot', [TelegramBotController::class, 'sendMessage']); //gitm
+Route::get('/bot_ghostwriter', [TelegramBotController::class, 'ghostwriterbot']); //ghostwriter
 
 //ACCESSORY ROUTES
 Route::get('/date', function () {
@@ -60,5 +62,3 @@ Route::get('/date', function () {
 });
 
 
-//TELEGRAM_BOT ROUTES
-Route::get('/kolown_bot', [TelegramBotController::class, 'sendMessage']);
